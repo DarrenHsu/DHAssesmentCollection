@@ -7,31 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A200D11822DC161B006F931C /* DHHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200D11722DC161B006F931C /* DHHeaderCell.swift */; };
-		A200D11C22DC1709006F931C /* DhAssesmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200D11B22DC1709006F931C /* DhAssesmentData.swift */; };
-		A200D11E22DC1F94006F931C /* DHHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200D11D22DC1F94006F931C /* DHHeaderCollectionView.swift */; };
-		A200D13722DC6DE8006F931C /* DHAssesmentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200D13622DC6DE8006F931C /* DHAssesmentCollectionView.swift */; };
-		A22274F522DDA7F2003D61AF /* DHCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22274F422DDA7F2003D61AF /* DHCollectionView.swift */; };
-		A222750022DDCCA0003D61AF /* DhAssesmentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22274FF22DDCCA0003D61AF /* DhAssesmentLayout.swift */; };
-		A2B692C922F4787400857A71 /* DHCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B692C822F4787400857A71 /* DHCollectionViewFlowLayout.swift */; };
-		A2B81AB422F6CBAB008E05E7 /* DHTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B81AB322F6CBAB008E05E7 /* DHTableViewCell.swift */; };
 		A2C05E1E22DA074F00B33A24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C05E1D22DA074F00B33A24 /* AppDelegate.swift */; };
 		A2C05E2022DA074F00B33A24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C05E1F22DA074F00B33A24 /* ViewController.swift */; };
 		A2C05E2322DA074F00B33A24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2C05E2122DA074F00B33A24 /* Main.storyboard */; };
 		A2C05E2522DA075100B33A24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2C05E2422DA075100B33A24 /* Assets.xcassets */; };
 		A2C05E2822DA075100B33A24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2C05E2622DA075100B33A24 /* LaunchScreen.storyboard */; };
-		A2F14E3822F52294006A564C /* DHTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F14E3722F52294006A564C /* DHTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A200D11722DC161B006F931C /* DHHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHHeaderCell.swift; sourceTree = "<group>"; };
-		A200D11B22DC1709006F931C /* DhAssesmentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DhAssesmentData.swift; sourceTree = "<group>"; };
-		A200D11D22DC1F94006F931C /* DHHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHHeaderCollectionView.swift; sourceTree = "<group>"; };
-		A200D13622DC6DE8006F931C /* DHAssesmentCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAssesmentCollectionView.swift; sourceTree = "<group>"; };
-		A22274F422DDA7F2003D61AF /* DHCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHCollectionView.swift; sourceTree = "<group>"; };
-		A22274FF22DDCCA0003D61AF /* DhAssesmentLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DhAssesmentLayout.swift; sourceTree = "<group>"; };
-		A2B692C822F4787400857A71 /* DHCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		A2B81AB322F6CBAB008E05E7 /* DHTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHTableViewCell.swift; sourceTree = "<group>"; };
 		A2C05E1A22DA074F00B33A24 /* DHAssesmentCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DHAssesmentCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C05E1D22DA074F00B33A24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2C05E1F22DA074F00B33A24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,7 +22,6 @@
 		A2C05E2422DA075100B33A24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2C05E2722DA075100B33A24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2C05E2922DA075100B33A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2F14E3722F52294006A564C /* DHTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +38,6 @@
 		A200D10A22DC0C44006F931C /* AssesmentCollection */ = {
 			isa = PBXGroup;
 			children = (
-				A200D11B22DC1709006F931C /* DhAssesmentData.swift */,
-				A22274FF22DDCCA0003D61AF /* DhAssesmentLayout.swift */,
-				A200D13622DC6DE8006F931C /* DHAssesmentCollectionView.swift */,
-				A2B692C822F4787400857A71 /* DHCollectionViewFlowLayout.swift */,
-				A22274F422DDA7F2003D61AF /* DHCollectionView.swift */,
-				A200D11D22DC1F94006F931C /* DHHeaderCollectionView.swift */,
-				A200D11722DC161B006F931C /* DHHeaderCell.swift */,
-				A2F14E3722F52294006A564C /* DHTableView.swift */,
-				A2B81AB322F6CBAB008E05E7 /* DHTableViewCell.swift */,
 			);
 			path = AssesmentCollection;
 			sourceTree = "<group>";
@@ -170,16 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A200D13722DC6DE8006F931C /* DHAssesmentCollectionView.swift in Sources */,
-				A200D11E22DC1F94006F931C /* DHHeaderCollectionView.swift in Sources */,
-				A2F14E3822F52294006A564C /* DHTableView.swift in Sources */,
-				A2B692C922F4787400857A71 /* DHCollectionViewFlowLayout.swift in Sources */,
-				A200D11C22DC1709006F931C /* DhAssesmentData.swift in Sources */,
-				A200D11822DC161B006F931C /* DHHeaderCell.swift in Sources */,
-				A222750022DDCCA0003D61AF /* DhAssesmentLayout.swift in Sources */,
-				A2B81AB422F6CBAB008E05E7 /* DHTableViewCell.swift in Sources */,
 				A2C05E2022DA074F00B33A24 /* ViewController.swift in Sources */,
-				A22274F522DDA7F2003D61AF /* DHCollectionView.swift in Sources */,
 				A2C05E1E22DA074F00B33A24 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
