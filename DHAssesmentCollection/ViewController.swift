@@ -12,13 +12,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var contentView: DHAssesmentCollectionView!
     
-    var data: DhAssesmentData?
+    var data: DHAssesmentData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.data = DhAssesmentData.mockData1()
+        self.data = DHAssesmentData.mockData1()
     }
     
     override func viewDidAppear(_ animated: Bool) {
