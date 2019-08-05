@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var items: [DHAssesmentItem] = []
+        items.append("t1", textAlignment: .center, width: 33)
+        items.append("t2", textAlignment: .center, width: 33)
+        items.append("t3", textAlignment: .center, width: 33)
+        
         return true
     }
 

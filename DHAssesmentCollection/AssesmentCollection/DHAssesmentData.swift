@@ -31,6 +31,8 @@ protocol DHItem {
     var textAlignment: NSTextAlignment? { get set }
     var width: CGFloat? { get set }
     var items: [DHAssesmentItem]? { get set }
+    
+    init(value: String?, textAlignment: NSTextAlignment?, width: CGFloat?, items: [DHAssesmentItem]?)
 }
 
 struct DHAssesmentItem: DHItem {
@@ -50,6 +52,16 @@ struct DHAssesmentItem: DHItem {
         self.items = items
     }
     
+    mutating func append(_ value: String? = nil, textAlignment: NSTextAlignment? = nil, width: CGFloat? = nil) {
+        let item = DHAssesmentItem(value: value, textAlignment: textAlignment, width: width)
+        self.append(item)
+    }
+    
+    mutating func append(_ value: String? = nil, textAlignment: NSTextAlignment? = nil, width: Int? = nil) {
+        let item = DHAssesmentItem(value: value, textAlignment: textAlignment, width: width != nil ? CGFloat(width!) : nil)
+        self.append(item)
+    }
+    
     mutating func append(_ item: DHAssesmentItem) {
         if items == nil {
             self.items = []
@@ -63,6 +75,22 @@ struct DHAssesmentItem: DHItem {
     
     mutating func setWidth(_ width: CGFloat) {
         self.width = width
+    }
+}
+
+extension Array where Element: DHItem  {
+    mutating func changeItem(from: Int, to: Int) {
+        guard from != to else { return }
+        precondition(from != to && indices.contains(from) && indices.contains(to), "invalid indexes")
+        insert(remove(at: from), at: to)
+    }
+    
+    mutating func append(_ value: String? = nil, textAlignment: NSTextAlignment? = nil, width: CGFloat? = nil, items: [Element]? = nil) {
+        self.append(Element.init(value: value, textAlignment: textAlignment, width: width, items: nil))
+    }
+    
+    mutating func append(_ value: String? = nil, textAlignment: NSTextAlignment? = nil, width: Int? = nil, items: [Element]? = nil) {
+        self.append(Element.init(value: value, textAlignment: textAlignment, width: (width != nil ? CGFloat(width!) : nil), items: nil))
     }
 }
 
@@ -83,7 +111,7 @@ extension DHAssesmentData {
         for i in 0..<displayCount {
             leftDisplays.append([])
             for j in 0..<leftHeaders.count {
-                leftDisplays[i].append(DHAssesmentItem(value: "L \(j) \(i)", textAlignment: .center, width: 150.0))
+                leftDisplays[i].append("L \(j) \(i)", textAlignment: .center, width: 150.0)
             }
         }
         
@@ -91,12 +119,12 @@ extension DHAssesmentData {
             switch i {
             case 1, 3, 5, 7, 10 , 15, 18:
                 var header = DHAssesmentItem(value: "H \(i)", textAlignment: .center)
-                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 150))
-                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 150))
-                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 150))
+                header.append("H \(i).0", textAlignment: .center, width: 150)
+                header.append("H \(i).1", textAlignment: .center, width: 150)
+                header.append("H \(i).2", textAlignment: .center, width: 150)
                 rightHeaders.append(header)
             default:
-                rightHeaders.append(DHAssesmentItem(value: "H \(i)", textAlignment: .center, width: 150))
+                rightHeaders.append("H \(i)", textAlignment: .center, width: 150)
             }
         }
         
@@ -106,11 +134,11 @@ extension DHAssesmentData {
                 if rightHeaders[j].items != nil {
                     var display = DHAssesmentItem()
                     for k in 0..<rightHeaders[j].items!.count {
-                        display.append(DHAssesmentItem(value: "R \(j).\(k).\(i)", textAlignment: .right, width: 150))
+                        display.append("R \(j).\(k).\(i)", textAlignment: .right, width: 150)
                     }
                     rightDisplays[i].append(display)
                 }else {
-                    rightDisplays[i].append(DHAssesmentItem(value: "R \(j).\(i)", textAlignment: .right, width: 150))
+                    rightDisplays[i].append("R \(j).\(i)", textAlignment: .right, width: 150)
                 }
             }
         }

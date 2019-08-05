@@ -111,11 +111,3 @@ class DHCollectionView: UICollectionView, DHAssesmentScroll, DHAssesmentMove, DH
         print("\(String(describing: type(of: self))) deinit")
     }
 }
-
-extension Array  {
-    mutating func changeItem(from: Int, to: Int) {
-        guard from != to else { return }
-        precondition(from != to && indices.contains(from) && indices.contains(to), "invalid indexes")
-        insert(remove(at: from), at: to)
-    }
-}

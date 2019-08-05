@@ -38,7 +38,6 @@ class DHItemCollectionViewCell: UICollectionViewCell {
         
         if !isSetupLabelStyle {
             self.headerLabel.font = layout.headerFount
-            self.headerLabel.textAlignment = isDisplayCell ? (item.textAlignment ?? .center) : layout.headerTextAlignment
             self.headerLabel.backgroundColor = isDisplayCell ? layout.displayCellBackgroundColor : layout.headerBackgroundColor
             self.headerLabel.layer.borderColor = layout.headerBorderColor.cgColor
             self.headerLabel.layer.borderWidth = layout.headerBorderWidth
@@ -47,6 +46,7 @@ class DHItemCollectionViewCell: UICollectionViewCell {
         }
         
         self.headerLabel.text = item.value
+        self.headerLabel.textAlignment = isDisplayCell ? (item.textAlignment ?? .center) : layout.headerTextAlignment
         
         if item.items == nil {
             self.headerLabelHightConstraint.constant = self.bounds.size.height
