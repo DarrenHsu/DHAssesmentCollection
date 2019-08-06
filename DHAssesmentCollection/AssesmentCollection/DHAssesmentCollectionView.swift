@@ -72,12 +72,6 @@ class DHAssesmentCollectionView: UIView {
         self.setupUI()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.reloadData()
-    }
-    
     private func setupUI() {
         self.addSubview(leftHeader)
         self.addSubview(rightHeader)
