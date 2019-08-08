@@ -35,11 +35,17 @@ class DHItemCollectionView: DHCollectionView {
         self.register(DHItemCollectionViewCell.self, forCellWithReuseIdentifier: DHItemCollectionViewCell.id)
     }
     
-    public func reloadData(_ layout: DhAssesmentLayout, items: [DHAssesmentItem]?) {
+    public func reloadData(_ layout: DhAssesmentLayout, items: [DHAssesmentItem]?, isDisplayCell: Bool = false) {
         self.layout = layout
         self.items = items
         
-        self.reloadData()
+        if isDisplayCell {
+            self.collectionViewLayout.invalidateLayout()
+            self.collectionViewLayout = DHCollectionViewFlowLayout.createHorizontalFlowLayout()
+            self.reloadData()
+        }else {
+            self.reloadData()
+        }
     }
 }
 
@@ -51,7 +57,8 @@ extension DHItemCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DHItemCollectionViewCell.id, for: indexPath) as! DHItemCollectionViewCell
         
-        cell.reloadData(self.layout!, item: self.items![indexPath.row], isDisplayCell: self.isDisplayColleciton)
+        cell.setupData(self.layout!, item: self.items![indexPath.row], isDisplayCell: self.isDisplayColleciton)
+        cell.reloadData()
         
         return cell
     }

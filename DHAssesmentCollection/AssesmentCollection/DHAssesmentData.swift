@@ -42,9 +42,9 @@ struct DHAssesmentItem: DHItem {
     var items: [DHAssesmentItem]?
     
     init(value: String? = nil,
-        textAlignment: NSTextAlignment? = nil,
-        width: CGFloat? = nil,
-        items: [DHAssesmentItem]? = nil) {
+         textAlignment: NSTextAlignment? = nil,
+         width: CGFloat? = nil,
+         items: [DHAssesmentItem]? = nil) {
         
         self.value = value
         self.width = width
@@ -97,8 +97,8 @@ extension Array where Element: DHItem  {
 extension DHAssesmentData {
     static func mockData1() -> DHAssesmentData {
         let leftHeaders = [
-            DHAssesmentItem(value: "產品代號", textAlignment: .center, width: 150.0),
-            DHAssesmentItem(value: "商品名稱", textAlignment: .center, width: 150.0)
+            DHAssesmentItem(value: "產品代號", textAlignment: .center, width: 80.0),
+            DHAssesmentItem(value: "商品名稱", textAlignment: .center, width: 80.0)
         ]
         
         var rightHeaders: [DHAssesmentItem] = []
@@ -111,20 +111,33 @@ extension DHAssesmentData {
         for i in 0..<displayCount {
             leftDisplays.append([])
             for j in 0..<leftHeaders.count {
-                leftDisplays[i].append("L \(j) \(i)", textAlignment: .center, width: 150.0)
+                leftDisplays[i].append(DHAssesmentItem(value: "L \(j) \(i)", textAlignment: .center, width: 80))
             }
         }
         
         for i in 0..<rightHeaderCount {
             switch i {
-            case 1, 3, 5, 7, 10 , 15, 18:
+            case 2, 3:
                 var header = DHAssesmentItem(value: "H \(i)", textAlignment: .center)
-                header.append("H \(i).0", textAlignment: .center, width: 150)
-                header.append("H \(i).1", textAlignment: .center, width: 150)
-                header.append("H \(i).2", textAlignment: .center, width: 150)
+                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 280))
+                rightHeaders.append(header)
+            case 4:
+                var header = DHAssesmentItem(value: "H \(i)", textAlignment: .center)
+                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 280))
+                rightHeaders.append(header)
+            case 5:
+                var header = DHAssesmentItem(value: "H \(i)", textAlignment: .center)
+                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 280))
                 rightHeaders.append(header)
             default:
-                rightHeaders.append("H \(i)", textAlignment: .center, width: 150)
+                rightHeaders.append(DHAssesmentItem(value: "H \(i)", textAlignment: .center, width: 150))
             }
         }
         
@@ -134,11 +147,11 @@ extension DHAssesmentData {
                 if rightHeaders[j].items != nil {
                     var display = DHAssesmentItem()
                     for k in 0..<rightHeaders[j].items!.count {
-                        display.append("R \(j).\(k).\(i)", textAlignment: .right, width: 150)
+                        display.append(DHAssesmentItem(value: "R \(j).\(k).\(i)", textAlignment: .right, width: 280))
                     }
                     rightDisplays[i].append(display)
                 }else {
-                    rightDisplays[i].append("R \(j).\(i)", textAlignment: .right, width: 150)
+                    rightDisplays[i].append(DHAssesmentItem(value: "R \(j).\(i)", textAlignment: .right, width: 150))
                 }
             }
         }

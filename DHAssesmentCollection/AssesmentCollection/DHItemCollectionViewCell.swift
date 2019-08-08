@@ -19,6 +19,7 @@ class DHItemCollectionViewCell: UICollectionViewCell {
     private var headerCollection: DHItemCollectionView!
     
     private var isSetupLabelStyle = false
+    private var isDisplayCell = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,30 +33,33 @@ class DHItemCollectionViewCell: UICollectionViewCell {
         self.setupUI()
     }
     
-    func reloadData(_ layout: DhAssesmentLayout, item: DHAssesmentItem, isDisplayCell: Bool = false) {
+    func setupData(_ layout: DhAssesmentLayout, item: DHAssesmentItem, isDisplayCell: Bool = false) {
         self.item = item
         self.layout = layout
-        
+        self.isDisplayCell = isDisplayCell
+    }
+    
+    func reloadData() {
         if !isSetupLabelStyle {
-            self.headerLabel.font = layout.headerFount
-            self.headerLabel.backgroundColor = isDisplayCell ? layout.displayCellBackgroundColor : layout.headerBackgroundColor
-            self.headerLabel.layer.borderColor = layout.headerBorderColor.cgColor
-            self.headerLabel.layer.borderWidth = layout.headerBorderWidth
+            self.headerLabel.font = self.layout!.headerFount
+            self.headerLabel.backgroundColor = self.isDisplayCell ? self.layout!.displayCellBackgroundColor : self.layout!.headerBackgroundColor
+            self.headerLabel.layer.borderColor = self.layout!.headerBorderColor.cgColor
+            self.headerLabel.layer.borderWidth = self.layout!.headerBorderWidth
             self.isSetupLabelStyle = true
             self.headerCollection.isDisplayColleciton = isDisplayCell
         }
         
-        self.headerLabel.text = item.value
-        self.headerLabel.textAlignment = isDisplayCell ? (item.textAlignment ?? .center) : layout.headerTextAlignment
+        self.headerLabel.text = self.item!.value
+        self.headerLabel.textAlignment = self.isDisplayCell ? (self.item!.textAlignment ?? .center) : self.layout!.headerTextAlignment
         
-        if item.items == nil {
+        if self.item!.items == nil {
             self.headerLabelHightConstraint.constant = self.bounds.size.height
         }else {
             self.headerLabelHightConstraint.constant = self.bounds.size.height / 2
-            self.headerCollection.reloadData(self.layout!, items: item.items!)
+            self.headerCollection.reloadData(self.layout!, items: self.item!.items!, isDisplayCell: true)
         }
         
-        if item.value == nil {
+        if self.item!.value == nil {
             self.headerLabelHightConstraint.constant = 0
         }
     }
