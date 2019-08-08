@@ -106,8 +106,4 @@ class DHCollectionView: UICollectionView, DHAssesmentScroll, DHAssesmentMove, DH
     func changeItem(_ from: Int, to: Int) {
         self.items?.changeItem(from: from, to: to)
     }
-    
-    deinit {
-        print("\(String(describing: type(of: self))) deinit")
-    }
 }

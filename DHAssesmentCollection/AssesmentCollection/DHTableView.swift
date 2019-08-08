@@ -83,10 +83,6 @@ class DHTableView: UITableView, DHAssesmentScroll, DHAssesmentMove, DHAssesmentI
             collectionView.cancelInteractiveMovement()
         }
     }
-    
-    deinit {
-        print("\(String(describing: type(of: self))) deinit")
-    }
 }
 
 extension DHTableView: UITableViewDataSource {

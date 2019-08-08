@@ -41,8 +41,4 @@ class DHTableViewCell: UITableViewCell {
             NSLayoutConstraint(item: collectionView!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
             ])
     }
-    
-    deinit {
-        print("\(String(describing: type(of: self))) deinit")
-    }
 }

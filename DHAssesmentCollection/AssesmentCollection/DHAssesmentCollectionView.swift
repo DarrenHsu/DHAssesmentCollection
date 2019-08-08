@@ -120,6 +120,8 @@ class DHAssesmentCollectionView: UIView {
             NSLayoutConstraint(item: rightDisplay, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
         ]
         self.addConstraints(rightDisplayContrants)
+        
+        self.layoutIfNeeded()
     }
     
     func reloadData(_ data: DHAssesmentData, layout: DhAssesmentLayout, didMoveItem: ((Int, Int) -> Void)? = nil, didTwipleTapItem: ((Int) -> Void)? = nil) {
@@ -189,9 +191,5 @@ class DHAssesmentCollectionView: UIView {
             }
             self.rightDisplay.reloadData(self.layout!, itemGroup: rDisplays)
         }
-    }
-    
-    deinit {
-        print("\(String(describing: type(of: self))) deinit")
     }
 }
