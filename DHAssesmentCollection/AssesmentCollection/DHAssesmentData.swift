@@ -42,9 +42,9 @@ struct DHAssesmentItem: DHItem {
     var items: [DHAssesmentItem]?
     
     init(value: String? = nil,
-        textAlignment: NSTextAlignment? = nil,
-        width: CGFloat? = nil,
-        items: [DHAssesmentItem]? = nil) {
+         textAlignment: NSTextAlignment? = nil,
+         width: CGFloat? = nil,
+         items: [DHAssesmentItem]? = nil) {
         
         self.value = value
         self.width = width
