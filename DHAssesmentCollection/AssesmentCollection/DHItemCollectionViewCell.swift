@@ -19,7 +19,9 @@ class DHItemCollectionViewCell: UICollectionViewCell {
     private var headerCollection: DHItemCollectionView!
     
     private var isSetupLabelStyle = false
-    private var isDisplayCell = false
+    
+    private var collectionType: DHItemCollectionViewType = .header
+    private var collectionCellType: DHItemCollectionViewCellType = .itemGroup
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,30 +35,28 @@ class DHItemCollectionViewCell: UICollectionViewCell {
         self.setupUI()
     }
     
-    func setupData(_ layout: DhAssesmentLayout, item: DHAssesmentItem, isDisplayCell: Bool = false) {
+    func reloadData(_ layout: DhAssesmentLayout, item: DHAssesmentItem, collectionType: DHItemCollectionViewType = .header, collectionCellType: DHItemCollectionViewCellType = .itemGroup ) {
         self.item = item
         self.layout = layout
-        self.isDisplayCell = isDisplayCell
-    }
-    
-    func reloadData() {
+        self.collectionType = collectionType
+        self.collectionCellType = collectionCellType
+        
         if !isSetupLabelStyle {
             self.headerLabel.font = self.layout!.headerFount
-            self.headerLabel.backgroundColor = self.isDisplayCell ? self.layout!.displayCellBackgroundColor : self.layout!.headerBackgroundColor
+            self.headerLabel.backgroundColor = self.collectionType == .display ? self.layout!.displayCellBackgroundColor : self.layout!.headerBackgroundColor
             self.headerLabel.layer.borderColor = self.layout!.headerBorderColor.cgColor
             self.headerLabel.layer.borderWidth = self.layout!.headerBorderWidth
             self.isSetupLabelStyle = true
-            self.headerCollection.isDisplayColleciton = isDisplayCell
         }
         
         self.headerLabel.text = self.item!.value
-        self.headerLabel.textAlignment = self.isDisplayCell ? (self.item!.textAlignment ?? .center) : self.layout!.headerTextAlignment
+        self.headerLabel.textAlignment = self.collectionCellType == .itemGroup ? (self.item!.textAlignment ?? .center) : self.layout!.headerTextAlignment
         
         if self.item!.items == nil {
             self.headerLabelHightConstraint.constant = self.bounds.size.height
         }else {
             self.headerLabelHightConstraint.constant = self.bounds.size.height / 2
-            self.headerCollection.reloadData(self.layout!, items: self.item!.items!, isDisplayCell: true)
+            self.headerCollection.reloadData(self.layout!, items: self.item!.items!, collectionType: self.collectionType, collectionCellType: self.collectionCellType)
         }
         
         if self.item!.value == nil {

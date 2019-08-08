@@ -97,12 +97,6 @@ extension DHTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DHTableViewCell.id, for: indexPath) as! DHTableViewCell
         
-        cell.collectionView.reloadData(self.layout!, items: self.itemGroup![indexPath.row])
-        cell.collectionView.viewDidScrollHorizontal = {[weak self] (x) in
-            self?.viewDidScrollHorizontal?(x)
-            self?.scrollHorizontal(x)
-        }
-        
         return cell
     }
 }
@@ -114,6 +108,11 @@ extension DHTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let collectionView = (cell as! DHTableViewCell).collectionView else { return }
+        collectionView.reloadData(self.layout!, items: self.itemGroup![indexPath.row], collectionType: .display)
+        collectionView.viewDidScrollHorizontal = {[weak self] (x) in
+            self?.viewDidScrollHorizontal?(x)
+            self?.scrollHorizontal(x)
+        }
         self.collectionViews.append(collectionView)
         collectionView.scrollRectToVisible(CGRect(x: scrollToX, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height), animated: false)
     }

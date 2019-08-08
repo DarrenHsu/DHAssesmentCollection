@@ -31,7 +31,6 @@ class DHTableViewCell: UITableViewCell {
         self.collectionView.bounces = false
         self.collectionView.backgroundColor = UIColor.clear
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.collectionView.isDisplayColleciton = true
         self.addSubview(collectionView)
         
         self.addConstraints([
