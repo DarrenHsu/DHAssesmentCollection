@@ -8,6 +8,16 @@
 
 import UIKit
 
+enum DHItemCollectionViewType {
+    case header
+    case display
+}
+
+enum DHItemCollectionViewCellType {
+    case itemGroup
+    case item
+}
+
 class DHCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     public static func createHorizontalFlowLayout() -> UICollectionViewFlowLayout {

@@ -73,9 +73,39 @@ struct DHAssesmentItem: DHItem {
         }
     }
     
-    mutating func setWidth(_ width: CGFloat) {
+    private mutating func setWidth(_ width: CGFloat) {
         self.width = width
     }
+    
+    lazy var allSubItem: [DHAssesmentItem]? = {
+        guard self.items != nil else { return nil }
+        
+        var result: [DHAssesmentItem] = []
+        var processItems: [[DHAssesmentItem]] = []
+        var tempItem: [DHAssesmentItem] = []
+        processItems.append(self.items!)
+        while(processItems.count != 0) {
+            let items = processItems.first
+            var hasItem: Bool = false
+            for i in 0..<(items?.count ?? 0) {
+                let item = items![i]
+                if item.items == nil {
+                    result.append(item)
+                }else {
+                    processItems.removeFirst()
+                    processItems.insert(item.items!, at: 0)
+                    hasItem = true
+                    if i < items!.count - 1 {
+                        processItems.insert(Array(items![(i + 1)..<items!.count]), at: 1)
+                    }
+                    break
+                }
+            }
+            
+            if !hasItem { processItems.removeFirst() }
+        }
+        return result
+    }()
 }
 
 extension Array where Element: DHItem  {

@@ -16,6 +16,9 @@
 		A231642122F8369800E2A994 /* DHCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A231641822F8369800E2A994 /* DHCollectionView.swift */; };
 		A231642222F8369800E2A994 /* DHAssesmentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A231641922F8369800E2A994 /* DHAssesmentCollectionView.swift */; };
 		A231642322F8369800E2A994 /* DHAssesmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A231641A22F8369800E2A994 /* DHAssesmentData.swift */; };
+		A23C649A22FC6B1F000BCA95 /* DHItemGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C649922FC6B1F000BCA95 /* DHItemGroupCollectionViewCell.swift */; };
+		A23C649C22FC6BC9000BCA95 /* DHItemGroupCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C649B22FC6BC9000BCA95 /* DHItemGroupCollectionView.swift */; };
+		A23C649E22FC6D3D000BCA95 /* DHLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C649D22FC6D3D000BCA95 /* DHLabel.swift */; };
 		A2C05E1E22DA074F00B33A24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C05E1D22DA074F00B33A24 /* AppDelegate.swift */; };
 		A2C05E2022DA074F00B33A24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C05E1F22DA074F00B33A24 /* ViewController.swift */; };
 		A2C05E2322DA074F00B33A24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2C05E2122DA074F00B33A24 /* Main.storyboard */; };
@@ -33,6 +36,9 @@
 		A231641822F8369800E2A994 /* DHCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHCollectionView.swift; sourceTree = "<group>"; };
 		A231641922F8369800E2A994 /* DHAssesmentCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAssesmentCollectionView.swift; sourceTree = "<group>"; };
 		A231641A22F8369800E2A994 /* DHAssesmentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHAssesmentData.swift; sourceTree = "<group>"; };
+		A23C649922FC6B1F000BCA95 /* DHItemGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHItemGroupCollectionViewCell.swift; sourceTree = "<group>"; };
+		A23C649B22FC6BC9000BCA95 /* DHItemGroupCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHItemGroupCollectionView.swift; sourceTree = "<group>"; };
+		A23C649D22FC6D3D000BCA95 /* DHLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHLabel.swift; sourceTree = "<group>"; };
 		A2C05E1A22DA074F00B33A24 /* DHAssesmentCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DHAssesmentCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C05E1D22DA074F00B33A24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2C05E1F22DA074F00B33A24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,12 +65,15 @@
 				A231641922F8369800E2A994 /* DHAssesmentCollectionView.swift */,
 				A231641A22F8369800E2A994 /* DHAssesmentData.swift */,
 				A231641622F8369800E2A994 /* DHAssesmentLayout.swift */,
-				A231641822F8369800E2A994 /* DHCollectionView.swift */,
-				A231641322F8369700E2A994 /* DHCollectionViewFlowLayout.swift */,
-				A231641722F8369800E2A994 /* DHItemCollectionView.swift */,
-				A231641222F8369700E2A994 /* DHItemCollectionViewCell.swift */,
 				A231641422F8369700E2A994 /* DHTableView.swift */,
 				A231641522F8369700E2A994 /* DHTableViewCell.swift */,
+				A231641822F8369800E2A994 /* DHCollectionView.swift */,
+				A231641322F8369700E2A994 /* DHCollectionViewFlowLayout.swift */,
+				A23C649B22FC6BC9000BCA95 /* DHItemGroupCollectionView.swift */,
+				A23C649922FC6B1F000BCA95 /* DHItemGroupCollectionViewCell.swift */,
+				A231641722F8369800E2A994 /* DHItemCollectionView.swift */,
+				A231641222F8369700E2A994 /* DHItemCollectionViewCell.swift */,
+				A23C649D22FC6D3D000BCA95 /* DHLabel.swift */,
 			);
 			path = AssesmentCollection;
 			sourceTree = "<group>";
@@ -170,11 +179,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A23C649C22FC6BC9000BCA95 /* DHItemGroupCollectionView.swift in Sources */,
 				A231641C22F8369800E2A994 /* DHCollectionViewFlowLayout.swift in Sources */,
+				A23C649E22FC6D3D000BCA95 /* DHLabel.swift in Sources */,
 				A2C05E2022DA074F00B33A24 /* ViewController.swift in Sources */,
 				A231641F22F8369800E2A994 /* DHAssesmentLayout.swift in Sources */,
 				A2C05E1E22DA074F00B33A24 /* AppDelegate.swift in Sources */,
 				A231641D22F8369800E2A994 /* DHTableView.swift in Sources */,
+				A23C649A22FC6B1F000BCA95 /* DHItemGroupCollectionViewCell.swift in Sources */,
 				A231641B22F8369800E2A994 /* DHItemCollectionViewCell.swift in Sources */,
 				A231642322F8369800E2A994 /* DHAssesmentData.swift in Sources */,
 				A231642122F8369800E2A994 /* DHCollectionView.swift in Sources */,

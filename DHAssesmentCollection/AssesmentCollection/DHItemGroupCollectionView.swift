@@ -1,14 +1,14 @@
 //
-//  DHItemCollectionView.swift
+//  DHItemGroupCollectionView.swift
 //  DHAssesmentCollection
 //
-//  Created by Darren Hsu on 2019/7/15.
+//  Created by wen on 2019/8/8.
 //  Copyright © 2019 D.H. All rights reserved.
 //
 
 import UIKit
 
-class DHItemCollectionView: DHCollectionView {
+class DHItemGroupCollectionView: DHCollectionView {
     
     private var collectionType: DHItemCollectionViewType = .header
     private var collectionCellType: DHItemCollectionViewCellType = .itemGroup
@@ -33,7 +33,7 @@ class DHItemCollectionView: DHCollectionView {
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         
-        self.register(DHItemCollectionViewCell.self, forCellWithReuseIdentifier: DHItemCollectionViewCell.id)
+        self.register(DHItemGroupCollectionViewCell.self, forCellWithReuseIdentifier: DHItemGroupCollectionViewCell.id)
     }
     
     public func reloadData(_ layout: DhAssesmentLayout, items: [DHAssesmentItem]?, collectionType: DHItemCollectionViewType = .header, collectionCellType: DHItemCollectionViewCellType = .itemGroup ) {
@@ -42,17 +42,23 @@ class DHItemCollectionView: DHCollectionView {
         self.collectionType = collectionType
         self.collectionCellType = collectionCellType
         
-        self.reloadData()
+        if self.collectionCellType == .item {
+            self.collectionViewLayout.invalidateLayout()
+            self.collectionViewLayout = DHCollectionViewFlowLayout.createHorizontalFlowLayout()
+            self.reloadData()
+        }else {
+            self.reloadData()
+        }
     }
 }
 
-extension DHItemCollectionView: UICollectionViewDataSource {
+extension DHItemGroupCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DHItemCollectionViewCell.id, for: indexPath) as! DHItemCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DHItemGroupCollectionViewCell.id, for: indexPath) as! DHItemGroupCollectionViewCell
         
         return cell
     }
@@ -62,9 +68,9 @@ extension DHItemCollectionView: UICollectionViewDataSource {
     }
 }
 
-extension DHItemCollectionView: UICollectionViewDelegateFlowLayout {
+extension DHItemGroupCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        (cell as! DHItemCollectionViewCell).reloadData(self.layout!, item: self.items![indexPath.row], collectionType: self.collectionType, collectionCellType: .item)
+        (cell as! DHItemGroupCollectionViewCell).reloadData(self.layout!, item: self.items![indexPath.row], collectionType: self.collectionType, collectionCellType: .item)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -72,8 +78,9 @@ extension DHItemCollectionView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension DHItemCollectionView: UIScrollViewAccessibilityDelegate {
+extension DHItemGroupCollectionView: UIScrollViewAccessibilityDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.viewDidScrollHorizontal?(scrollView.contentOffset.x)
     }
 }
+

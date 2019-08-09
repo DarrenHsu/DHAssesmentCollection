@@ -23,8 +23,8 @@ class DHAssesmentCollectionView: UIView {
     private var containerHeight: CGFloat?
     private var didTwipleTapItem: ((Int) -> Void)?
     
-    private lazy var leftHeader: DHItemCollectionView = {
-        var leftHeader = DHItemCollectionView(frame: CGRect.zero, collectionViewLayout: DHCollectionViewFlowLayout.createHorizontalFlowLayout())
+    private lazy var leftHeader: DHItemGroupCollectionView = {
+        var leftHeader = DHItemGroupCollectionView(frame: CGRect.zero, collectionViewLayout: DHCollectionViewFlowLayout.createHorizontalFlowLayout())
         leftHeader.backgroundColor = UIColor.clear
         leftHeader.bounces = false
         leftHeader.translatesAutoresizingMaskIntoConstraints = false
@@ -40,8 +40,8 @@ class DHAssesmentCollectionView: UIView {
         return leftDisplay
     }()
     
-    private lazy var rightHeader: DHItemCollectionView = {
-        let rightHeader = DHItemCollectionView(frame: .zero, collectionViewLayout: DHCollectionViewFlowLayout.createHorizontalFlowLayout())
+    private lazy var rightHeader: DHItemGroupCollectionView = {
+        let rightHeader = DHItemGroupCollectionView(frame: .zero, collectionViewLayout: DHCollectionViewFlowLayout.createHorizontalFlowLayout())
         rightHeader.backgroundColor = UIColor.clear
         rightHeader.bounces = false
         rightHeader.translatesAutoresizingMaskIntoConstraints = false

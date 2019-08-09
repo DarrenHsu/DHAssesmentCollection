@@ -14,9 +14,7 @@ class DHItemCollectionViewCell: UICollectionViewCell {
     private var layout: DhAssesmentLayout?
     private var item: DHAssesmentItem?
     
-    private var headerLabel: DHLabel!
-    private var headerLabelHightConstraint: NSLayoutConstraint!
-    private var headerCollection: DHItemCollectionView!
+    private var stackView: UIStackView!
     
     private var isSetupLabelStyle = false
     
@@ -40,65 +38,50 @@ class DHItemCollectionViewCell: UICollectionViewCell {
         self.layout = layout
         self.collectionType = collectionType
         self.collectionCellType = collectionCellType
+
+        self.stackView.arrangedSubviews.forEach { ($0 as! DHLabel).widthConstraint.constant = 0 }
         
-        if !isSetupLabelStyle {
-            self.headerLabel.font = self.layout!.headerFount
-            self.headerLabel.backgroundColor = self.collectionType == .display ? self.layout!.displayCellBackgroundColor : self.layout!.headerBackgroundColor
-            self.headerLabel.layer.borderColor = self.layout!.headerBorderColor.cgColor
-            self.headerLabel.layer.borderWidth = self.layout!.headerBorderWidth
-            self.isSetupLabelStyle = true
-        }
-        
-        self.headerLabel.text = self.item!.value
-        self.headerLabel.textAlignment = self.collectionCellType == .itemGroup ? (self.item!.textAlignment ?? .center) : self.layout!.headerTextAlignment
-        
-        if self.item!.items == nil {
-            self.headerLabelHightConstraint.constant = self.bounds.size.height
+        if let items = self.item?.allSubItem {
+            for i in 0..<items.count {
+                if i != 0 && self.stackView.arrangedSubviews.count <= items.count {
+                    let label = DHLabel(frame: CGRect.zero)
+                    self.stackView.addArrangedSubview(label)
+                }
+                
+                let subItem = items[i]
+                let label = self.stackView.arrangedSubviews[i] as! DHLabel
+                label.widthConstraint.constant = subItem.width!
+                label.text = subItem.value
+                label.textAlignment = subItem.textAlignment!
+                label.isHidden = false
+                label.setupLayout(self.layout!, type: self.collectionType)
+            }
         }else {
-            self.headerLabelHightConstraint.constant = self.bounds.size.height / 2
-            self.headerCollection.reloadData(self.layout!, items: self.item!.items!, collectionType: self.collectionType, collectionCellType: self.collectionCellType)
-        }
-        
-        if self.item!.value == nil {
-            self.headerLabelHightConstraint.constant = 0
+            let label = self.stackView.arrangedSubviews.first as! DHLabel
+            label.text = self.item!.value
+            label.textAlignment = self.item!.textAlignment!
+            label.isHidden = false
+            label.setupLayout(self.layout!, type: self.collectionType)
         }
     }
     
     func setupUI() {
-        self.headerLabel = DHLabel(frame: CGRect.zero)
-        self.headerLabel.numberOfLines = 0
-        self.addSubview(headerLabel)
+        self.stackView = UIStackView(frame: CGRect.zero)
+        self.stackView.axis = .horizontal
+        self.addSubview(self.stackView)
         
-        self.headerCollection = DHItemCollectionView(frame: CGRect.zero, collectionViewLayout: DHCollectionViewFlowLayout.createHorizontalFlowLayout())
-        self.addSubview(headerCollection)
+        self.stackView.addArrangedSubview(DHLabel(frame: CGRect.zero))
         
-        self.headerLabelHightConstraint = NSLayoutConstraint(item: headerLabel!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
-        self.headerLabel.addConstraint(self.headerLabelHightConstraint)
-        
-        self.headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.stackView.translatesAutoresizingMaskIntoConstraints = false
         self.addConstraints([
-            NSLayoutConstraint(item: headerLabel!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: headerLabel!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: headerLabel!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-            ])
-
-        self.headerCollection.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraints([
-            NSLayoutConstraint(item: headerCollection!, attribute: .top, relatedBy: .equal, toItem: headerLabel!, attribute: .bottom, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: headerCollection!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: headerCollection!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: headerCollection!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackView!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackView!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackView!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
             ])
     }
     
     deinit {
         print("\(String(describing: type(of: self))) deinit")
-    }
-}
-
-class DHLabel: UILabel {
-    override func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        super.drawText(in: rect.inset(by: insets))
     }
 }
