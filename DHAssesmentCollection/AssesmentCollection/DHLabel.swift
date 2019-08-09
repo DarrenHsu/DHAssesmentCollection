@@ -41,9 +41,4 @@ class DHLabel: UILabel {
         self.font = type == .header ? layout.headerFount : layout.displayFount
         isSetupLayout = true        
     }
-    
-    deinit {
-        print("\(String(describing: type(of: self))) deinit")
-    }
-    
 }

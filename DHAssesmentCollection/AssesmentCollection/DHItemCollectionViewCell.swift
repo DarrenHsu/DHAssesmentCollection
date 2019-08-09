@@ -38,8 +38,8 @@ class DHItemCollectionViewCell: UICollectionViewCell {
         self.layout = layout
         self.collectionType = collectionType
         self.collectionCellType = collectionCellType
-
-        self.stackView.arrangedSubviews.forEach { ($0 as! DHLabel).widthConstraint.constant = 0 }
+        
+        self.stackView.arrangedSubviews.forEach { $0.isHidden = true }
         
         if let items = self.item?.allSubItem {
             for i in 0..<items.count {
@@ -79,9 +79,5 @@ class DHItemCollectionViewCell: UICollectionViewCell {
             NSLayoutConstraint(item: stackView!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: stackView!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
             ])
-    }
-    
-    deinit {
-        print("\(String(describing: type(of: self))) deinit")
     }
 }
