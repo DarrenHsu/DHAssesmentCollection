@@ -47,7 +47,7 @@ class DHItemCollectionViewCell: UICollectionViewCell {
                     let label = DHLabel(frame: CGRect.zero)
                     self.stackView.addArrangedSubview(label)
                 }
-                
+
                 let subItem = items[i]
                 let label = self.stackView.arrangedSubviews[i] as! DHLabel
                 label.widthConstraint.constant = subItem.width!
@@ -67,13 +67,13 @@ class DHItemCollectionViewCell: UICollectionViewCell {
     
     func setupUI() {
         self.stackView = UIStackView(frame: CGRect.zero)
+        self.stackView.translatesAutoresizingMaskIntoConstraints = false
         self.stackView.axis = .horizontal
         self.addSubview(self.stackView)
         
         self.stackView.addArrangedSubview(DHLabel(frame: CGRect.zero))
         
-        self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraints([
+        NSLayoutConstraint.activate([
             NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: stackView!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: stackView!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),

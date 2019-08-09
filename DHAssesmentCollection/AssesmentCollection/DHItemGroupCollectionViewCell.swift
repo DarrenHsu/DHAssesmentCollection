@@ -48,17 +48,17 @@ class DHItemGroupCollectionViewCell: UICollectionViewCell {
             self.headerLabel.layer.borderWidth = self.layout!.headerBorderWidth
             self.isSetupLabelStyle = true
         }
-        
+
         self.headerLabel.text = self.item!.value
         self.headerLabel.textAlignment = self.collectionCellType == .itemGroup ? (self.item!.textAlignment ?? .center) : self.layout!.headerTextAlignment
-        
+
         if self.item!.items == nil {
             self.headerLabelHightConstraint.constant = self.bounds.size.height
         }else {
             self.headerLabelHightConstraint.constant = self.bounds.size.height / 2
             self.headerCollection.reloadData(self.layout!, items: self.item!.items!, collectionType: self.collectionType, collectionCellType: self.collectionCellType)
         }
-        
+
         if self.item!.value == nil {
             self.headerLabelHightConstraint.constant = 0
         }
@@ -66,32 +66,27 @@ class DHItemGroupCollectionViewCell: UICollectionViewCell {
     
     func setupUI() {
         self.headerLabel = DHLabel(frame: CGRect.zero)
+        self.headerLabel.translatesAutoresizingMaskIntoConstraints = false
         self.headerLabel.numberOfLines = 0
         self.addSubview(headerLabel)
         
         self.headerCollection = DHItemGroupCollectionView(frame: CGRect.zero, collectionViewLayout: DHCollectionViewFlowLayout.createHorizontalFlowLayout())
+        self.headerCollection.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(headerCollection)
         
         self.headerLabelHightConstraint = NSLayoutConstraint(item: headerLabel!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
-        self.headerLabel.addConstraint(self.headerLabelHightConstraint)
         
-        self.headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraints([
+        NSLayoutConstraint.activate([
+            self.headerLabelHightConstraint,
+            
             NSLayoutConstraint(item: headerLabel!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: headerLabel!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: headerLabel!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-            ])
-        
-        self.headerCollection.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraints([
+            NSLayoutConstraint(item: headerLabel!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
+            
             NSLayoutConstraint(item: headerCollection!, attribute: .top, relatedBy: .equal, toItem: headerLabel!, attribute: .bottom, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: headerCollection!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: headerCollection!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: headerCollection!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0),
             ])
-    }
-    
-    deinit {
-        print("\(String(describing: type(of: self))) deinit")
     }
 }
