@@ -49,7 +49,7 @@ class DHItemGroupCollectionView: DHCollectionView {
         }else {
             self.reloadData()
         }
-    }
+    }    
 }
 
 extension DHItemGroupCollectionView: UICollectionViewDataSource {

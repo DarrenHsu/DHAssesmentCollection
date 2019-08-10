@@ -14,7 +14,7 @@ class DHItemCollectionViewCell: UICollectionViewCell {
     private var layout: DhAssesmentLayout?
     private var item: DHAssesmentItem?
     
-    private var stackView: UIStackView!
+    private var labels: [DHLabel] = []
     
     private var isSetupLabelStyle = false
     
@@ -39,47 +39,39 @@ class DHItemCollectionViewCell: UICollectionViewCell {
         self.collectionType = collectionType
         self.collectionCellType = collectionCellType
         
-        self.stackView.arrangedSubviews.forEach { $0.isHidden = true }
+        self.labels.forEach { $0.alpha = 0 }
         
         if let items = self.item?.allSubItem {
+            var width: CGFloat = 0
             for i in 0..<items.count {
-                if i != 0 && self.stackView.arrangedSubviews.count <= items.count {
+                if i != 0 && self.labels.count <= items.count {
                     let label = DHLabel(frame: CGRect.zero)
-                    self.stackView.addArrangedSubview(label)
+                    self.addSubview(label)
+                    self.labels.append(label)
                 }
-
                 let subItem = items[i]
-                let label = self.stackView.arrangedSubviews[i] as! DHLabel
-                if i < items.count - 1 {
-                    label.widthAnchor.constraint(equalToConstant: subItem.width!).isActive = true
-                }
+                if i > 0 { width += subItem.width! }
+                let label = self.labels[i]
+                label.frame = CGRect(x: width, y: 0, width: subItem.width!, height: self.layout!.displayCellHeight)
                 label.text = subItem.value
                 label.textAlignment = subItem.textAlignment!
-                label.isHidden = false
+                label.alpha = 1
                 label.setupLayout(self.layout!, type: self.collectionType)
             }
         }else {
-            let label = self.stackView.arrangedSubviews.first as! DHLabel
+            let label = self.labels.first!
+            label.frame = CGRect(x: 0, y: 0, width: self.item!.width!, height: self.layout!.displayCellHeight)
             label.text = self.item!.value
             label.textAlignment = self.item!.textAlignment!
-            label.isHidden = false
+            label.alpha = 1
             label.setupLayout(self.layout!, type: self.collectionType)
         }
+        
+        self.setNeedsLayout()
     }
     
     func setupUI() {
-        self.stackView = UIStackView(frame: CGRect.zero)
-        self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.stackView.axis = .horizontal
-        self.addSubview(self.stackView)
-        
-        self.stackView.addArrangedSubview(DHLabel(frame: CGRect.zero))
-        
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: stackView!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: stackView!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: stackView!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
-            ])
+        labels.append(DHLabel(frame: CGRect.zero))
+        self.addSubview(labels.first!)
     }
 }

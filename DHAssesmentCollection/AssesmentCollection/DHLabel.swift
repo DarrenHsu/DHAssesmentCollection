@@ -31,6 +31,6 @@ class DHLabel: UILabel {
         self.layer.borderColor = layout.headerBorderColor.cgColor
         self.layer.borderWidth = layout.headerBorderWidth
         self.font = type == .header ? layout.headerFount : layout.displayFount
-        isSetupLayout = true        
-    }
+        isSetupLayout = true
+    }    
 }

@@ -44,5 +44,5 @@ class DHCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let attributes = super.layoutAttributesForInteractivelyMovingItem(at: indexPath, withTargetPosition: position)
         attributes.alpha = 0.5
         return attributes
-    }
+    }    
 }
