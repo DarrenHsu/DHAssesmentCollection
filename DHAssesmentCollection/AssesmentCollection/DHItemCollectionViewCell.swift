@@ -32,7 +32,7 @@ class DHItemCollectionViewCell: UICollectionViewCell {
         
         self.setupUI()
     }
-    
+        
     func reloadData(_ layout: DhAssesmentLayout, item: DHAssesmentItem, collectionType: DHItemCollectionViewType = .header, collectionCellType: DHItemCollectionViewCellType = .itemGroup ) {
         self.item = item
         self.layout = layout
@@ -50,7 +50,9 @@ class DHItemCollectionViewCell: UICollectionViewCell {
 
                 let subItem = items[i]
                 let label = self.stackView.arrangedSubviews[i] as! DHLabel
-                label.widthConstraint.constant = subItem.width!
+                if i < items.count - 1 {
+                    label.widthAnchor.constraint(equalToConstant: subItem.width!).isActive = true
+                }
                 label.text = subItem.value
                 label.textAlignment = subItem.textAlignment!
                 label.isHidden = false

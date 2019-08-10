@@ -40,6 +40,7 @@ struct DHAssesmentItem: DHItem {
     var textAlignment: NSTextAlignment?
     var width: CGFloat?
     var items: [DHAssesmentItem]?
+    var allSubItem: [DHAssesmentItem]?
     
     init(value: String? = nil,
          textAlignment: NSTextAlignment? = nil,
@@ -71,18 +72,18 @@ struct DHAssesmentItem: DHItem {
             self.items?.append(item)
             self.setWidth((self.width ?? 0) + (item.width ?? 0))
         }
+        self.getAllSubItem()
     }
     
     private mutating func setWidth(_ width: CGFloat) {
         self.width = width
     }
     
-    lazy var allSubItem: [DHAssesmentItem]? = {
-        guard self.items != nil else { return nil }
+    private mutating func getAllSubItem() {
+        guard self.items != nil else { return }
         
         var result: [DHAssesmentItem] = []
         var processItems: [[DHAssesmentItem]] = []
-        var tempItem: [DHAssesmentItem] = []
         processItems.append(self.items!)
         while(processItems.count != 0) {
             let items = processItems.first
@@ -104,8 +105,9 @@ struct DHAssesmentItem: DHItem {
             
             if !hasItem { processItems.removeFirst() }
         }
-        return result
-    }()
+     
+        self.allSubItem = result
+    }
 }
 
 extension Array where Element: DHItem  {
@@ -163,8 +165,8 @@ extension DHAssesmentData {
                 header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 280))
                 header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 280))
                 header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 280))
-                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 280))
-                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).3", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).4", textAlignment: .center, width: 280))
                 rightHeaders.append(header)
             default:
                 rightHeaders.append(DHAssesmentItem(value: "H \(i)", textAlignment: .center, width: 150))
