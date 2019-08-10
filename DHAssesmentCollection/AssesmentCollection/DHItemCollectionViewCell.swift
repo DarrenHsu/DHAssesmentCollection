@@ -50,7 +50,7 @@ class DHItemCollectionViewCell: UICollectionViewCell {
                     self.labels.append(label)
                 }
                 let subItem = items[i]
-                if i > 0 { width += subItem.width! }
+                if i > 0 { width = labels[i - 1].frame.size.width }
                 let label = self.labels[i]
                 label.frame = CGRect(x: width, y: 0, width: subItem.width!, height: self.layout!.displayCellHeight)
                 label.text = subItem.value
@@ -71,7 +71,7 @@ class DHItemCollectionViewCell: UICollectionViewCell {
     }
     
     func setupUI() {
-        labels.append(DHLabel(frame: CGRect.zero))
+        self.labels.append(DHLabel(frame: CGRect.zero))
         self.addSubview(labels.first!)
     }
 }
