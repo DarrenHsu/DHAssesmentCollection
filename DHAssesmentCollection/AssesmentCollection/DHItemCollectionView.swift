@@ -63,10 +63,6 @@ extension DHItemCollectionView: UICollectionViewDataSource {
 }
 
 extension DHItemCollectionView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        (cell as! DHItemCollectionViewCell).reloadData(self.layout!, item: self.items![indexPath.row], collectionType: self.collectionType, collectionCellType: .item)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.items![indexPath.row].width!, height: collectionView.bounds.size.height)
     }

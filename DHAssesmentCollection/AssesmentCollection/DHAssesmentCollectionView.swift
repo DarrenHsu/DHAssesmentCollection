@@ -60,6 +60,19 @@ class DHAssesmentCollectionView: UIView {
         return rightDisplay
     }()
     
+    private lazy var indicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.startAnimating()
+        self.addConstraints([
+            NSLayoutConstraint(item: indicator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 45),
+            NSLayoutConstraint(item: indicator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 45),
+            NSLayoutConstraint(item: indicator, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: indicator, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+            ])
+        return indicator
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -77,6 +90,7 @@ class DHAssesmentCollectionView: UIView {
         self.addSubview(rightHeader)
         self.addSubview(leftDisplay)
         self.addSubview(rightDisplay)
+        self.addSubview(indicatorView)
     }
     
     private func setupConstraint() {
@@ -93,7 +107,7 @@ class DHAssesmentCollectionView: UIView {
             NSLayoutConstraint(item: leftHeader, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: CGFloat(self.layout?.headerHeight ?? 0))
         ]
         self.addConstraints(leftHeaderContrants)
-
+        
         self.removeConstraints(rightHeaderContrants)
         rightHeaderContrants = [
             NSLayoutConstraint(item: rightHeader, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
@@ -102,7 +116,7 @@ class DHAssesmentCollectionView: UIView {
             NSLayoutConstraint(item: rightHeader, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: CGFloat(self.layout?.headerHeight ?? 0))
         ]
         self.addConstraints(rightHeaderContrants)
-
+        
         self.removeConstraints(leftDisplayContrants)
         leftDisplayContrants = [
             NSLayoutConstraint(item: leftDisplay, attribute: .top, relatedBy: .equal, toItem: leftHeader, attribute: .bottom, multiplier: 1, constant: 0),
@@ -111,7 +125,7 @@ class DHAssesmentCollectionView: UIView {
             NSLayoutConstraint(item: leftDisplay, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: lWidth)
         ]
         self.addConstraints(leftDisplayContrants)
-
+        
         self.removeConstraints(rightDisplayContrants)
         rightDisplayContrants = [
             NSLayoutConstraint(item: rightDisplay, attribute: .top, relatedBy: .equal, toItem: rightHeader, attribute: .bottom, multiplier: 1, constant: 0),
@@ -191,5 +205,8 @@ class DHAssesmentCollectionView: UIView {
             }
             self.rightDisplay.reloadData(self.layout!, itemGroup: rDisplays)
         }
+        
+        self.indicatorView.isHidden = true
+        self.indicatorView.stopAnimating()
     }
 }
