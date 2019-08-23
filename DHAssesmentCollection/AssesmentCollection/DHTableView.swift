@@ -56,7 +56,7 @@ class DHTableView: UITableView, DHAssesmentScroll, DHAssesmentMove, DHAssesmentI
     func scrollHorizontal(_ x: CGFloat) {
         self.scrollToX = x
         self.collectionViews.forEach { (collectionView) in
-            collectionView.scrollRectToVisible(CGRect(x: x, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height), animated: false)
+            collectionView.scrollRectToVisible(CGRect(x: self.scrollToX, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height), animated: false)
         }
     }
     
@@ -92,7 +92,7 @@ extension DHTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DHTableViewCell.id, for: indexPath) as! DHTableViewCell
-        
+        cell.collectionView.reloadData(self.layout!, items: self.itemGroup![indexPath.row], collectionType: .display)
         return cell
     }
 }
@@ -104,13 +104,12 @@ extension DHTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let collectionView = (cell as! DHTableViewCell).collectionView else { return }
-        collectionView.reloadData(self.layout!, items: self.itemGroup![indexPath.row], collectionType: .display)
         collectionView.viewDidScrollHorizontal = {[weak self] (x) in
             self?.viewDidScrollHorizontal?(x)
             self?.scrollHorizontal(x)
         }
+        collectionView.scrollRectToVisible(CGRect(x: self.scrollToX, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height), animated: false)
         self.collectionViews.append(collectionView)
-        collectionView.scrollRectToVisible(CGRect(x: scrollToX, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height), animated: false)
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
