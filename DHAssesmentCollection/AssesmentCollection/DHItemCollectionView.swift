@@ -43,6 +43,7 @@ class DHItemCollectionView: DHCollectionView {
         self.collectionCellType = collectionCellType
         
         self.reloadData()
+        self.layoutIfNeeded()
     }
 }
 
