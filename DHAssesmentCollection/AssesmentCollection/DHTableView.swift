@@ -55,33 +55,27 @@ class DHTableView: UITableView, DHAssesmentScroll, DHAssesmentMove, DHAssesmentI
     
     func scrollHorizontal(_ x: CGFloat) {
         self.scrollToX = x
-        self.collectionViews.forEach { (collectionView) in
-            collectionView.scrollRectToVisible(CGRect(x: self.scrollToX, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height), animated: false)
-        }
+        self.collectionViews.forEach { $0.scrollRectToVisible(CGRect(x: self.scrollToX, y: 0, width: $0.bounds.size.width, height: $0.bounds.size.height), animated: false) }
     }
     
     func beginInteractiveAll(_ indexPath: IndexPath) {
-        self.collectionViews.forEach { (collectionView) in
-            collectionView.beginInteractiveMovementForItem(at: indexPath)
+        self.collectionViews.forEach {
+            $0.beginInteractiveMovementForItem(at: indexPath)
+            guard let cell = $0.cellForItem(at: indexPath) else { return }
+            cell.alpha = DHCollectionViewFlowLayout.movingAlpha
         }
     }
     
     func updateInteractiveAll(_ point: CGPoint) {
-        self.collectionViews.forEach { (collectionView) in
-            collectionView.updateInteractiveMovementTargetPosition(point)
-        }
+        self.collectionViews.forEach { $0.updateInteractiveMovementTargetPosition(point) }
     }
     
     func endInteractiveAll() {
-        self.collectionViews.forEach { (collectionView) in
-            collectionView.endInteractiveMovement()
-        }
+        self.collectionViews.forEach { $0.endInteractiveMovement() }
     }
     
     func cancelInteractiveAll() {
-        self.collectionViews.forEach { (collectionView) in
-            collectionView.cancelInteractiveMovement()
-        }
+        self.collectionViews.forEach { $0.cancelInteractiveMovement() }
     }
 }
 

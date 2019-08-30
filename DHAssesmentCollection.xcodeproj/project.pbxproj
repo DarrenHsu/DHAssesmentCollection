@@ -340,7 +340,7 @@
 				ALTERNATE_OWNER = "Darren Hsu";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTXSG2H8MM;
+				DEVELOPMENT_TEAM = 3Z28793AXS;
 				INFOPLIST_FILE = DHAssesmentCollection/Info.plist;
 				INSTALL_OWNER = "Darren Hsu";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -348,7 +348,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tw.com.dh.DHAssesmentCollection;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chinalife.ishare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -361,7 +361,7 @@
 				ALTERNATE_OWNER = "Darren Hsu";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTXSG2H8MM;
+				DEVELOPMENT_TEAM = 3Z28793AXS;
 				INFOPLIST_FILE = DHAssesmentCollection/Info.plist;
 				INSTALL_OWNER = "Darren Hsu";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -369,7 +369,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tw.com.dh.DHAssesmentCollection;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chinalife.ishare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

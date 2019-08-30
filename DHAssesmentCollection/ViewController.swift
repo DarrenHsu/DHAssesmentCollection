@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.data = DHAssesmentData.mockData1()
+        self.data = DHAssesmentData.stupData1()
     }
     
     override func viewDidAppear(_ animated: Bool) {

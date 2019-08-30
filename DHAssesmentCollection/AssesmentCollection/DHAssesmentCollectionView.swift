@@ -98,8 +98,8 @@ class DHAssesmentCollectionView: UIView {
     
     private func setupConstraint() {
         var lWidth: CGFloat = 0.0
-        for header in self.assesmentData?.leftHeaders ?? [] {
-            lWidth += header.width ?? 0
+        self.assesmentData?.leftHeaders.forEach {
+            lWidth += $0.width ?? 0
         }
         
         self.removeConstraints(leftHeaderContrants)

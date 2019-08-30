@@ -127,7 +127,7 @@ extension Array where Element: DHItem  {
 }
 
 extension DHAssesmentData {
-    static func mockData1() -> DHAssesmentData {
+    static func stupData1() -> DHAssesmentData {
         let leftHeaders = [
             DHAssesmentItem(value: "產品代號", textAlignment: .center, width: 80.0),
             DHAssesmentItem(value: "商品名稱", textAlignment: .center, width: 80.0)

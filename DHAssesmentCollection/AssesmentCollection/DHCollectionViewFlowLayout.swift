@@ -20,6 +20,8 @@ enum DHItemCollectionViewCellType {
 
 class DHCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
+    public static var movingAlpha: CGFloat = 0.4
+    
     public static func createHorizontalFlowLayout() -> UICollectionViewFlowLayout {
         let layout = DHCollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -30,7 +32,7 @@ class DHCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return layout
     }
     
-    override open func invalidationContext(forInteractivelyMovingItems targetIndexPaths: [IndexPath], withTargetPosition targetPosition: CGPoint, previousIndexPaths: [IndexPath], previousPosition: CGPoint) -> UICollectionViewLayoutInvalidationContext {
+    override func invalidationContext(forInteractivelyMovingItems targetIndexPaths: [IndexPath], withTargetPosition targetPosition: CGPoint, previousIndexPaths: [IndexPath], previousPosition: CGPoint) -> UICollectionViewLayoutInvalidationContext {
         let context = super.invalidationContext(forInteractivelyMovingItems: targetIndexPaths, withTargetPosition: targetPosition, previousIndexPaths: previousIndexPaths, previousPosition: previousPosition)
         if previousIndexPaths.first!.item != targetIndexPaths.first!.item {
             if let c = collectionView, c is DHCollectionView {
@@ -40,9 +42,9 @@ class DHCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return context
     }
     
-    open override func layoutAttributesForInteractivelyMovingItem(at indexPath: IndexPath, withTargetPosition position: CGPoint) -> UICollectionViewLayoutAttributes {
+    override func layoutAttributesForInteractivelyMovingItem(at indexPath: IndexPath, withTargetPosition position: CGPoint) -> UICollectionViewLayoutAttributes {
         let attributes = super.layoutAttributesForInteractivelyMovingItem(at: indexPath, withTargetPosition: position)
-        attributes.alpha = 0.5
+        attributes.alpha = DHCollectionViewFlowLayout.movingAlpha
         return attributes
     }    
 }

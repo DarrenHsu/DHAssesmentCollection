@@ -43,7 +43,6 @@ class DHCollectionView: UICollectionView, DHAssesmentScroll, DHAssesmentMove, DH
     var layout: DhAssesmentLayout?
     var items: [DHAssesmentItem]?
     
-    private var longPress: UILongPressGestureRecognizer?
     private var moveY: CGFloat?
     
     @objc var endInteractive: (() -> Void)?
@@ -57,13 +56,13 @@ class DHCollectionView: UICollectionView, DHAssesmentScroll, DHAssesmentMove, DH
     }
     
     func setupLongGesture() {
-        self.longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture(_:)))
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture(_:)))
         
-        let longPress2second = UITapGestureRecognizer(target: self, action: #selector(handleLongGesture2Second(_:)))
-        longPress2second.numberOfTapsRequired = 3
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLongGesture2Second(_:)))
+        tapGesture.numberOfTapsRequired = 3
         
-        self.addGestureRecognizer(longPress2second)
-        self.addGestureRecognizer(self.longPress!)
+        self.addGestureRecognizer(tapGesture)
+        self.addGestureRecognizer(longPress)
     }
     
     @objc private func handleLongGesture2Second(_ gesture: UILongPressGestureRecognizer) {
@@ -85,6 +84,8 @@ class DHCollectionView: UICollectionView, DHAssesmentScroll, DHAssesmentMove, DH
             let point = CGPoint(x: gesture.location(in: self).x, y: 0)
             if let indexPath = self.indexPathForItem(at: point) {
                 let cell = self.cellForItem(at: indexPath)
+                cell?.alpha = DHCollectionViewFlowLayout.movingAlpha
+                
                 self.moveY = (cell?.frame.size.height ?? 0.0) / 2.0
                 self.beginInteractiveMovementForItem(at: indexPath)
                 self.beginInteractive?(indexPath)
