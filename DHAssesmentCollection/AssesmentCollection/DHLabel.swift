@@ -36,8 +36,8 @@ class DHLabel: UILabel {
     func setupLayout(_ layout: DhAssesmentLayout, type: DHItemCollectionViewType) {
         guard !isSetupLayout else { return }
         self.backgroundColor = type == .header ? layout.headerBackgroundColor : layout.displayCellBackgroundColor
-        self.layer.borderColor = layout.headerBorderColor.cgColor
-        self.layer.borderWidth = layout.headerBorderWidth
+        self.layer.borderColor = layout.displayBorderColor.cgColor
+        self.layer.borderWidth = layout.displayBorderWidth
         self.font = type == .header ? layout.headerFount : layout.displayFount
         isSetupLayout = true
     }    

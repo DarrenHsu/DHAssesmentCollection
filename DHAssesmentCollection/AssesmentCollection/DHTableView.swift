@@ -87,6 +87,12 @@ extension DHTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DHTableViewCell.id, for: indexPath) as! DHTableViewCell
         cell.collectionView.reloadData(self.layout!, items: self.itemGroup![indexPath.row], collectionType: .display)
+        cell.sapartorHeightConstraint.constant = self.layout!.displayCellSapartorBorderWidth
+        cell.sapartorView.backgroundColor = self.layout!.displayCellSapartorBorderColor
+        
+        cell.fixSapartorView.backgroundColor = self.layout!.displayFixSaparatorColor
+        cell.fixSapartorHeightConstraint.constant = self.layout!.displayFixSaparatorWidth
+        
         return cell
     }
 }
