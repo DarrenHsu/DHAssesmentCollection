@@ -31,6 +31,8 @@ class DHTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
+        self.selectionStyle = .none
+        
         self.sapartorView = UIView(frame: .zero)
         self.sapartorView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.sapartorView)
