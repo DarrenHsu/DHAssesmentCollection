@@ -129,8 +129,7 @@ extension Array where Element: DHItem  {
 extension DHAssesmentData {
     static func stupData1() -> DHAssesmentData {
         let leftHeaders = [
-            DHAssesmentItem(value: "產品代號", textAlignment: .center, width: 80.0),
-            DHAssesmentItem(value: "商品名稱", textAlignment: .center, width: 80.0)
+            DHAssesmentItem(value: "H", textAlignment: .center, width: 80.0),
         ]
         
         var rightHeaders: [DHAssesmentItem] = []
@@ -151,25 +150,25 @@ extension DHAssesmentData {
             switch i {
             case 2, 3:
                 var header = DHAssesmentItem(value: "H \(i)", textAlignment: .center)
-                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 280))
-                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 120))
+                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 120))
                 rightHeaders.append(header)
             case 4:
                 var header = DHAssesmentItem(value: "H \(i)", textAlignment: .center)
-                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 280))
-                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 280))
-                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 120))
+                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 120))
+                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 120))
                 rightHeaders.append(header)
             case 5:
                 var header = DHAssesmentItem(value: "H \(i)", textAlignment: .center)
-                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 280))
-                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 280))
-                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 280))
-                header.append(DHAssesmentItem(value: "H \(i).3", textAlignment: .center, width: 280))
-                header.append(DHAssesmentItem(value: "H \(i).4", textAlignment: .center, width: 280))
+                header.append(DHAssesmentItem(value: "H \(i).0", textAlignment: .center, width: 120))
+                header.append(DHAssesmentItem(value: "H \(i).1", textAlignment: .center, width: 120))
+                header.append(DHAssesmentItem(value: "H \(i).2", textAlignment: .center, width: 120))
+                header.append(DHAssesmentItem(value: "H \(i).3", textAlignment: .center, width: 120))
+                header.append(DHAssesmentItem(value: "H \(i).4", textAlignment: .center, width: 120))
                 rightHeaders.append(header)
             default:
-                rightHeaders.append(DHAssesmentItem(value: "H \(i)", textAlignment: .center, width: 150))
+                rightHeaders.append(DHAssesmentItem(value: "H \(i)", textAlignment: .center, width: 120))
             }
         }
         
@@ -179,11 +178,11 @@ extension DHAssesmentData {
                 if rightHeaders[j].items != nil {
                     var display = DHAssesmentItem()
                     for k in 0..<rightHeaders[j].items!.count {
-                        display.append(DHAssesmentItem(value: "R \(j).\(k).\(i)", textAlignment: .right, width: 280))
+                        display.append(DHAssesmentItem(value: "R \(j).\(k).\(i)", textAlignment: .right, width: 120))
                     }
                     rightDisplays[i].append(display)
                 }else {
-                    rightDisplays[i].append(DHAssesmentItem(value: "R \(j).\(i)", textAlignment: .right, width: 150))
+                    rightDisplays[i].append(DHAssesmentItem(value: "R \(j).\(i)", textAlignment: .right, width: 120))
                 }
             }
         }
