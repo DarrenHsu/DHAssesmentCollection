@@ -27,8 +27,8 @@ class DHCollectionViewFlowLayout: UICollectionViewFlowLayout {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.headerReferenceSize = CGSize.zero
+        layout.sectionInset = .zero
+        layout.headerReferenceSize = .zero
         return layout
     }
     
